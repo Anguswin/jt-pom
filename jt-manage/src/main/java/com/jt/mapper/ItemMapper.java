@@ -1,0 +1,21 @@
+package com.jt.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.jt.pojo.Item;
+
+public interface ItemMapper extends BaseMapper<Item> {
+
+	@Select("select * from tb_item order by updated desc limit #{startIndex},#{rows}")
+	List<Item> findItemByPage(@Param("startIndex") Integer startIndex, @Param("rows")Integer rows);
+
+	void deleteItem(Long[] ids);
+
+//	void updateStatus(@Param("ids") Long[] ids,@Param("status") Integer status);
+	
+}
